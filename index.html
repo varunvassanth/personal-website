@@ -275,7 +275,46 @@ nav a:hover { color: var(--blue); }
   text-shadow: 0 2px 12px rgba(0,0,0,0.22);
   max-width: 42ch;
 }
+.lbreak-patch img {
+  object-position: center 38%;
+  filter: brightness(1.02) contrast(1.08) saturate(1.16);
+}
 
+.lbreak-patch .lbreak-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.10) 0%,
+    rgba(0,0,0,0.04) 45%,
+    transparent 100%
+  );
+}
+
+.lbreak-patch .lbreak-text {
+  left: 2.4rem;
+  right: auto;
+  bottom: 2rem;
+  width: min(640px, calc(100% - 4.8rem));
+  padding: 1.1rem 1.25rem 1.2rem;
+  background: rgba(18, 18, 18, 0.36);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.lbreak-patch .lbreak-eye {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.45rem;
+  color: rgba(255,255,255,0.82);
+}
+
+.lbreak-patch .lbreak-q {
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  line-height: 1.12;
+  max-width: none;
+  text-wrap: balance;
+}
+  
 /* ── SECTION SCAFFOLDING ── */
 .sec { padding: 5.5rem 3rem; }
 .sec-wrap { max-width: 1100px; margin: 0 auto; }
@@ -728,12 +767,12 @@ footer span { font-size: 0.75rem; color: var(--muted); }
 </section>
 
 <!-- LANDSCAPE BREAK — Patch Festival of Ideas -->
-<div class="lbreak">
-  <img src="images/patch-foi.png" alt="People gathered for the Festival of Ideas Community Event at Patch Gray's Brewery Yard">
+<div class="lbreak lbreak-patch">
+  <img src="images/patch-foi.png" alt="People gathered for the Festival of Ideas community event at Patch Gray's Brewery Yard">
   <div class="lbreak-overlay"></div>
   <div class="lbreak-text">
     <div class="lbreak-eye">Patch · Gray's Brewery Yard</div>
-    <div class="lbreak-q">Designing the conditions for people to come together and build something shared.</div>
+    <div class="lbreak-q">Designing the conditions for people to come together<br>and build something shared.</div>
   </div>
 </div>
 
