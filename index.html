@@ -66,12 +66,16 @@ nav {
 
 .nav-name {
   font-family: 'Fraunces', serif;
-  font-size: 1.05rem; font-weight: 500;
+  font-size: 1.2rem; font-weight: 500;
   color: var(--ink); text-decoration: none;
 }
 
-nav ul { list-style: none; display: flex; gap: 1.8rem; }
-nav a { font-size: 0.82rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.18s; }
+.nav-surname {
+  color: var(--blue);   /* same as hero */
+}
+
+nav ul { list-style: none; display: flex; gap: 2.2rem; }
+nav a { font-size: 0.95rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.18s; }
 nav a:hover { color: var(--blue); }
 
 /* ── HERO ── */
@@ -653,7 +657,9 @@ footer span { font-size: 0.75rem; color: var(--muted); }
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-name">Varun Vassanth</a>
+  <a href="#" class="nav-name">
+  Varun <span class="nav-surname">Vassanth</span>
+</a>
   <ul>
     <li><a href="#work">Work</a></li>
     <li><a href="#writing">Writing</a></li>
