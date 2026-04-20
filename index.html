@@ -82,8 +82,8 @@ nav a:hover { color: var(--blue); }
   position: relative; overflow: hidden;
   background: linear-gradient(
     135deg,
-    #F5F1E8 0%,
-    #EEF4FF 100%
+    #F7F2E8 0%,
+    #EDF4FF 100%
     );
 }
 
@@ -92,10 +92,10 @@ nav a:hover { color: var(--blue); }
   content: '';
   position: absolute; inset: 0;
   background:
-    radial-gradient(circle at 80% 10%, rgba(74,154,94,0.35) 0%, transparent 50%),
-    radial-gradient(circle at 10% 90%, rgba(120,160,255,0.25) 0%, transparent 55%),
-    radial-gradient(circle at 60% 40%, rgba(180,140,255,0.18) 0%, transparent 60%);
-  filter: blur(10px);
+    radial-gradient(circle at 82% 10%, rgba(74,154,94,0.42) 0%, transparent 52%),
+    radial-gradient(circle at 10% 88%, rgba(120,160,255,0.30) 0%, transparent 56%),
+    radial-gradient(circle at 58% 42%, rgba(180,140,255,0.22) 0%, transparent 62%);
+  filter: blur(12px);
   pointer-events: none;
 }
 
@@ -103,7 +103,7 @@ nav a:hover { color: var(--blue); }
   position: relative;
   max-width: 1100px;
   display: grid;
-  grid-template-columns: 1fr 420px;
+  grid-template-columns: 1fr 480px;
   gap: 3rem;
   align-items: start;
 }
@@ -144,20 +144,24 @@ nav a:hover { color: var(--blue); }
 
 .hero-line {
   font-family: 'DM Sans', sans-serif;
-  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
-  font-weight: 400; color: #1F2937; /*stronger than muted*/
-  max-width: 44ch; line-height: 1.6;
+  font-size: clamp(1.12rem, 2.3vw, 1.38rem);
+  font-weight: 420; color: #243041; /*stronger than muted*/
+  max-width: 50ch; line-height: 1.68;
   margin-bottom: 2.4rem;
   opacity: 0; animation: up 0.6s 0.32s ease forwards;
 }
 
+.hero-line strong {
+  font-weight: 560;
+}
+
 .hero-kicker {
   font-size: 0.90rem;
-  font-weight: 500;
-  letter-spacing: 0.24em;
+  font-weight: 600;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 1rem;
+  color: #5F7FD6;
+  margin-top: 1.4rem;
   margin-bottom: 1.6rem;
 
   font-family: 'Inter', sans-serif;
@@ -175,6 +179,7 @@ nav a:hover { color: var(--blue); }
   width: 100%;
   max-width: 340px;
   border-radius: 18px;
+  transform: translateX(20x)
 }
   
 .hero-ctas {
@@ -663,8 +668,8 @@ footer span { font-size: 0.75rem; color: var(--muted); }
     <div class="hero-kicker">CITIES • TECHNOLOGY • PARTICIPATION</div>
     </div>
     <p class="hero-line">
-  <strong>My work sits at the intersection of the built environment, technological innovation, and participation.</strong><br><br>
-  I’m drawn to designing spaces, systems, and experiences that bring people in...
+  <strong>My work sits at the intersection of the built environment, technological innovation, and collective participation.</strong><br><br>
+  I’m drawn to designing spaces, systems, and experiences that bring people in. I enjoy the process of turning early-stage concepts into things people use and love.
 </p>
     <div class="hero-ctas">
       <a href="#work" class="btn btn-blue">See the work →</a>
