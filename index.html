@@ -80,17 +80,21 @@ nav a:hover { color: var(--blue); }
   display: flex; flex-direction: column; justify-content: flex-end;
   padding: 8rem 3rem 4rem;
   position: relative; overflow: hidden;
-  background: var(--cream);
+  background: linear-gradient(
+    to bottom right,
+    #F6F1E5 0%,
+    #EEF3FB 100%
+    );
 }
 
-/* Subtle green wash — accent, not dominant */
+/* green wash - slightly more obvious */
 .hero::before {
   content: '';
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 85% 65% at 85% 5%,  rgba(74,154,94,0.16) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 55% at 10% 90%, rgba(74,154,94,0.10) 0%, transparent 55%),
-    radial-gradient(ellipse 90% 80% at 50% 40%, rgba(40,85,184,0.07) 0%, transparent 65%);
+    radial-gradient(ellipse 90% 70% at 85% 5%,  rgba(74,154,94,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 70% at 10% 90%, rgba(74,154,94,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 120% 100% at 60% 40%, rgba(40,85,184,0.12) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -100,7 +104,7 @@ nav a:hover { color: var(--blue); }
   display: grid;
   grid-template-columns: 1fr 340px;
   gap: 3rem;
-  align-items: end;
+  align-items: start;
 }
 
 .hero-tag {
@@ -139,16 +143,26 @@ nav a:hover { color: var(--blue); }
 
 .hero-line {
   font-family: 'DM Sans', sans-serif;
-  font-size: clamp(1.05rem, 2.3vw, 1.35rem);
-  font-weight: 400; color: var(--muted);
-  max-width: 46ch; line-height: 1.55;
+  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+  font-weight: 400; color: var(--ink2); /*darker than muted*/
+  max-width: 44ch; line-height: 1.55;
   margin-bottom: 2.4rem;
   opacity: 0; animation: up 0.6s 0.32s ease forwards;
+}
+
+.hero-kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
 }
 
 .hero-right {
   display: flex;
   justify-content: flex-end;
+  align-items: flex-start;
 }
 
 .hero-right img {
@@ -640,10 +654,11 @@ footer span { font-size: 0.75rem; color: var(--muted); }
     <div class="hero-tag"><span class="pulse"></span> London</div>
     <div class="hero-name">
       Varun<br><span class="blue">Vassanth.</span>
+    <div class="hero-kicker">CITIES • TECHNOLOGY • PARTICIPATION</div>
     </div>
     <p class="hero-line">
       I build and launch things across cities, technology, and community.<br><br>
-      My work sits at the intersection of physical spaces, digital products, and the systems that shape how people participate. I’m drawn to moments where things don’t quite work yet — and to the process of turning them into something people actually use.
+      My work sits at the intersection of the built environment, technological innovation, and the systems that shape access. I’m drawn to designing spaces, systems, and experiences that bring people in. I love the process of turnings things don’t quite work yet into something people actually use and love.
     </p>
     <div class="hero-ctas">
       <a href="#work" class="btn btn-blue">See the work →</a>
@@ -653,10 +668,6 @@ footer span { font-size: 0.75rem; color: var(--muted); }
   <div class="hero-right">
     <img src="images/portrait.jpg" alt="Varun">
   </div>
-</div>
-      <a href="#work" class="btn btn-blue">See the work →</a>
-      <a href="mailto:varunvassanth@outlook.com" class="btn btn-outline">Get in touch</a>
-    </div>
   </div>
 </section>
 
