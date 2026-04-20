@@ -225,7 +225,7 @@ nav a:hover { color: var(--blue); }
   object-fit: cover;
   object-position: center 38%;
   display: block;
-  filter: brightness(0.78) contrast(1.05) saturate(1.08);
+  filter: brightness(0.95) contrast(1.10) saturate(1.20);
 }
 
 .lbreak-overlay {
@@ -233,18 +233,23 @@ nav a:hover { color: var(--blue); }
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(28,24,16,0.34) 0%,
-    rgba(28,24,16,0.10) 45%,
-    transparent 72%
+    rgba(28,24,16,0.28) 0%,
+    rgba(28,24,16,0.08) 45%,
+    transparent 75%
   );
 }
 
 .lbreak-text {
   position: absolute;
-  bottom: 3.2rem;
+  bottom: 3rem;
   left: 3rem;
   color: #fff;
   max-width: 52ch;
+
+  background: rgba(0, 0, 0, 0.35);
+  padding: 1.2rem 1.4rem;
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
 }
 
 .lbreak-eye {
@@ -258,7 +263,7 @@ nav a:hover { color: var(--blue); }
 
 .lbreak-q {
   font-family: 'Fraunces', serif;
-  font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
   font-weight: 400;
   line-height: 1.18;
   letter-spacing: -0.015em;
@@ -722,7 +727,7 @@ footer span { font-size: 0.75rem; color: var(--muted); }
   <div class="lbreak-overlay"></div>
   <div class="lbreak-text">
     <div class="lbreak-eye">Patch · Gray's Brewery Yard</div>
-    <div class="lbreak-q">Building a shared cultural vision.</div>
+    <div class="lbreak-q">Designing the conditions for people to come together and build a shared cultural vision.</div>
   </div>
 </div>
 
