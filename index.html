@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Varun Vassanth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:      #F6F1E5;
+  --cream-deep: #EDE5D0;
+  --paper:      #FAF7EF;
+  --ink:        #1C1810;
+  --ink2:       #3D3526;
+  --muted:      #7C7060;
+  --line:       rgba(28,24,16,0.09);
+  --line2:      rgba(28,24,16,0.15);
+
+  /* Signature blue — Patch-inspired, bold enough on cream */
+  --blue:       #2855B8;
+  --blue-mid:   #4A72D0;
+  --blue-light: rgba(40,85,184,0.10);
+
+  /* Card brand rays */
+  --patch-blue:  #2855B8;
+  --ot-green:    #4A9A5E;
+  --ic-purple:   #7B4FB0;
+  --sc-red:      #B84040;
+
+  /* Section backgrounds */
+  --bg-sage:    #E8EEE0;   /* projects section */
+  --bg-sky:     #DDE8F0;   /* writing section — clearly different */
+  --bg-lilac:   #EAE0F2;   /* now section */
+  --bg-amber:   #F2EAD8;   /* events section */
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0.75rem; left: 1rem; right: 1rem;
+  z-index: 100;
+  background: rgba(250,247,239,0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--line2);
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.6rem;
+  box-shadow: 0 2px 16px rgba(28,24,16,0.06);
+}
+
+.nav-name {
+  font-family: 'Fraunces', serif;
+  font-size: 1.05rem; font-weight: 500;
+  color: var(--ink); text-decoration: none;
+}
+
+nav ul { list-style: none; display: flex; gap: 1.8rem; }
+nav a { font-size: 0.82rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.18s; }
+nav a:hover { color: var(--blue); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 8rem 3rem 4rem;
+  position: relative; overflow: hidden;
+  background: var(--cream);
+}
+
+/* Subtle green wash — accent, not dominant */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 85% 8%,  rgba(74,154,94,0.13) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 45% at 8%  88%,  rgba(74,154,94,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 70% at 40% 40%,  rgba(40,85,184,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-inner { position: relative; max-width: 960px; }
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(250,247,239,0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--line2);
+  padding: 0.32rem 0.85rem; border-radius: 100px;
+  font-size: 0.73rem; font-weight: 600; color: var(--muted);
+  margin-bottom: 1.8rem; width: fit-content;
+  opacity: 0; animation: up 0.6s 0.1s ease forwards;
+}
+
+.pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--ot-green);
+  animation: glow 2.5s infinite;
+}
+@keyframes glow {
+  0%,100% { box-shadow: 0 0 0 0 rgba(74,154,94,0.5); }
+  50%      { box-shadow: 0 0 0 6px rgba(74,154,94,0); }
+}
+
+/* Big name — prominent but not overbearing */
+.hero-name {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(3.8rem, 9vw, 7.5rem);
+  font-weight: 400; line-height: 0.98;
+  letter-spacing: -0.03em; color: var(--ink);
+  margin-bottom: 1.4rem;
+  opacity: 0; animation: up 0.65s 0.18s ease forwards;
+}
+
+/* Signature blue on the second name */
+.hero-name .blue { color: var(--blue); }
+
+.hero-line {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  font-weight: 400; color: var(--muted);
+  max-width: 58ch; line-height: 1.55;
+  margin-bottom: 2.4rem;
+  opacity: 0; animation: up 0.6s 0.32s ease forwards;
+}
+
+.hero-ctas {
+  display: flex; gap: 0.65rem; flex-wrap: wrap;
+  margin-bottom: 3rem;
+  opacity: 0; animation: up 0.6s 0.44s ease forwards;
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.75rem 1.4rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem; font-weight: 600;
+  text-decoration: none; border-radius: 100px;
+  transition: all 0.18s; border: 1.5px solid transparent;
+  letter-spacing: -0.01em;
+}
+.btn-blue { background: var(--blue); color: #fff; }
+.btn-blue:hover { background: var(--blue-mid); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(40,85,184,0.22); }
+.btn-outline { background: transparent; color: var(--ink); border-color: var(--line2); }
+.btn-outline:hover { background: var(--paper); border-color: var(--blue); color: var(--blue); }
+
+.creds {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+  opacity: 0; animation: up 0.6s 0.55s ease forwards;
+}
+.cred {
+  font-size: 0.71rem; font-weight: 600; color: var(--muted);
+  background: rgba(250,247,239,0.7);
+  border: 1px solid var(--line2);
+  padding: 0.28rem 0.72rem; border-radius: 100px;
+  backdrop-filter: blur(6px);
+}
+
+/* ── LANDSCAPE BREAK ── */
+.lbreak {
+  width: 100%; position: relative;
+  height: clamp(220px, 32vw, 400px);
+  overflow: hidden;
+}
+.lbreak img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 30%;
+  display: block;
+  filter: brightness(0.68) saturate(0.9);
+}
+.lbreak-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(28,24,16,0.45) 0%, transparent 65%);
+}
+.lbreak-text {
+  position: absolute; bottom: 2.5rem; left: 3rem;
+  color: #fff; max-width: 55ch;
+}
+.lbreak-eye {
+  font-size: 0.67rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); margin-bottom: 0.5rem;
+}
+.lbreak-q {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.2rem, 2.8vw, 1.9rem);
+  font-weight: 400; line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+
+/* ── SECTION SCAFFOLDING ── */
+.sec { padding: 5.5rem 3rem; }
+.sec-wrap { max-width: 1100px; margin: 0 auto; }
+
+.sec-head { margin-bottom: 3rem; }
+.sec-head-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; margin-bottom: 3rem; }
+
+.sec-eye {
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.85rem;
+}
+
+h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  font-weight: 400; line-height: 1.1;
+  letter-spacing: -0.02em; margin-bottom: 0.7rem;
+}
+
+.sec-sub { font-size: 1rem; color: var(--muted); max-width: 46ch; line-height: 1.65; }
+
+/* ── WORK SECTION ── */
+.work-sec { background: var(--bg-sage); }
+
+.work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+
+/* Card: cream, round, brand-ray top-left */
+.wcard {
+  background: var(--paper);
+  border-radius: 22px;
+  padding: 1.7rem;
+  position: relative;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  border: 1px solid rgba(28,24,16,0.07);
+  box-shadow: 0 2px 12px rgba(28,24,16,0.06);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.wcard:hover { transform: translateY(-4px); box-shadow: 0 10px 36px rgba(28,24,16,0.10); }
+
+/* Brand ray — radial burst from top-left corner */
+.wcard::before {
+  content: '';
+  position: absolute;
+  top: -40px; left: -40px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, var(--ray-colour) 0%, transparent 70%);
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.wcard.patch  { --ray-colour: var(--patch-blue); }
+.wcard.ot     { --ray-colour: var(--ot-green); }
+.wcard.ic     { --ray-colour: var(--ic-purple); }
+.wcard.sc     { --ray-colour: var(--sc-red); }
+
+.wcard-media {
+  width: calc(100% + 3.4rem);
+  margin: -1.7rem -1.7rem 1.4rem;
+  aspect-ratio: 16/9; object-fit: cover;
+  border-radius: 22px 22px 0 0;
+  flex-shrink: 0;
+}
+
+.wcard-noimg {
+  width: calc(100% + 3.4rem);
+  margin: -1.7rem -1.7rem 1.4rem;
+  aspect-ratio: 16/9;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.5);
+  border-radius: 22px 22px 0 0;
+  font-family: 'Fraunces', serif;
+  font-size: 1.6rem; font-weight: 300;
+  color: rgba(28,24,16,0.18);
+  letter-spacing: -0.02em;
+}
+
+.wcard-top {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 0.7rem; margin-bottom: 0.2rem;
+}
+
+.wcard-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.2rem; font-weight: 500;
+  line-height: 1.2; letter-spacing: -0.01em; color: var(--ink);
+}
+
+.wcard-logo { height: 24px; width: auto; object-fit: contain; border-radius: 5px; flex-shrink: 0; opacity: 0.9; }
+
+.wcard-role { font-size: 0.78rem; font-weight: 500; color: var(--muted); margin-bottom: 0.85rem; }
+
+.wcard-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; flex: 1; margin-bottom: 1rem; }
+.wcard-desc strong { color: var(--ink); font-weight: 600; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 0.32rem; }
+.chip {
+  font-size: 0.69rem; font-weight: 600;
+  padding: 0.28rem 0.68rem; border-radius: 100px;
+  border: 1px solid var(--line2);
+  color: var(--muted); background: rgba(246,241,229,0.7);
+  text-decoration: none; transition: all 0.15s;
+}
+a.chip:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+
+/* ── WRITING ── */
+.writing-sec { background: var(--bg-sky); }
+
+.writing-layout { display: grid; grid-template-columns: 1.35fr 1fr; gap: 3.5rem; align-items: start; }
+
+.wlist { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.wrow {
+  display: grid; grid-template-columns: 4rem 1fr auto;
+  align-items: center; gap: 1rem;
+  padding: 0.88rem 1rem;
+  background: var(--paper);
+  border: 1px solid rgba(28,24,16,0.08);
+  border-radius: 10px;
+  text-decoration: none; color: var(--ink);
+  transition: all 0.18s;
+  box-shadow: 0 1px 4px rgba(28,24,16,0.03);
+}
+.wrow:hover { border-color: var(--blue); transform: translateX(4px); box-shadow: 0 3px 12px rgba(40,85,184,0.10); }
+.wrow.ghost { opacity: 0.42; background: transparent; border-style: dashed; box-shadow: none; cursor: default; }
+.wrow.ghost:hover { transform: none; border-color: var(--line2); }
+
+.wr-date { font-size: 0.7rem; font-weight: 700; color: var(--muted); }
+.wr-title { font-size: 0.88rem; line-height: 1.38; }
+.wr-badge {
+  font-size: 0.61rem; font-weight: 700; letter-spacing: 0.05em;
+  padding: 0.2rem 0.58rem; border-radius: 100px; white-space: nowrap;
+}
+.wr-badge.pub   { background: var(--blue-light); color: var(--blue); border: 1px solid rgba(40,85,184,0.2); }
+.wr-badge.draft { background: rgba(28,24,16,0.06); color: var(--muted); border: 1px solid var(--line); }
+
+.press-aside { position: sticky; top: 5.5rem; }
+
+.aside-head {
+  font-size: 0.67rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 0.7rem;
+}
+
+.press-list {
+  border: 1px solid var(--line2); border-radius: 12px; overflow: hidden;
+  box-shadow: 0 2px 8px rgba(28,24,16,0.05);
+}
+
+.prow {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  padding: 0.88rem 1rem;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  text-decoration: none; color: var(--ink);
+  transition: background 0.15s;
+}
+.prow:last-child { border-bottom: none; }
+.prow:hover { background: rgba(40,85,184,0.05); }
+.prow.dim { opacity: 0.5; cursor: default; }
+.prow.dim:hover { background: var(--paper); }
+
+.prow-icon { font-size: 1rem; flex-shrink: 0; line-height: 1.4; }
+.prow-title { font-size: 0.82rem; line-height: 1.3; margin-bottom: 0.18rem; }
+.prow-source { font-size: 0.7rem; font-weight: 600; color: var(--muted); }
+
+/* ── SPEAKING BREAK ── */
+/* uses .lbreak above */
+
+/* ── EVENTS ── */
+.events-sec { background: var(--bg-amber); }
+
+.ev-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+
+.ev {
+  background: var(--paper);
+  border-radius: 18px; overflow: hidden;
+  border: 1px solid rgba(28,24,16,0.08);
+  box-shadow: 0 2px 14px rgba(28,24,16,0.06);
+  display: flex; flex-direction: column;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.ev:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(28,24,16,0.09); }
+
+.ev-img { width: 100%; aspect-ratio: 3/2; object-fit: cover; display: block; }
+
+.ev-mosaic {
+  display: grid; grid-template-columns: 1fr 1fr;
+  grid-template-rows: 58% 42%;
+  aspect-ratio: 3/2;
+}
+.ev-mosaic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ev-mosaic .span { grid-column: 1/-1; }
+
+.ev-body { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; }
+
+.ev-kicker {
+  font-size: 0.63rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem;
+}
+
+/* "Culture of" kicker in blue */
+.ev-kicker .culture-of { color: var(--blue); }
+
+.ev-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem; font-weight: 500;
+  line-height: 1.2; letter-spacing: -0.01em;
+  color: var(--ink); margin-bottom: 0.7rem;
+}
+
+.ev-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.65; flex: 1; margin-bottom: 1rem; }
+.ev-desc strong { color: var(--ink); font-weight: 600; }
+
+.ev-stat {
+  display: inline-flex; align-items: baseline; gap: 0.4rem;
+  background: rgba(28,24,16,0.05); border: 1px solid var(--line2);
+  border-radius: 8px; padding: 0.45rem 0.8rem; width: fit-content;
+}
+.ev-stat-n { font-family: 'Fraunces', serif; font-size: 1.35rem; font-weight: 500; color: var(--ink); line-height: 1; }
+.ev-stat-l { font-size: 0.7rem; font-weight: 600; color: var(--muted); }
+
+/* ── NOW ── */
+.now-sec { background: var(--bg-lilac); }
+
+.now-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: start; }
+
+.now-prose { font-size: 1.03rem; color: var(--muted); line-height: 1.75; }
+.now-prose p + p { margin-top: 1.1rem; }
+.now-prose strong { color: var(--ink); font-weight: 600; }
+
+.facts {
+  background: var(--paper); border: 1px solid var(--line2);
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 2px 12px rgba(28,24,16,0.05);
+}
+
+.facts-head {
+  font-size: 0.67rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+  padding: 0.85rem 1.2rem;
+  background: rgba(28,24,16,0.03);
+  border-bottom: 1px solid var(--line);
+}
+
+.frow {
+  display: grid; grid-template-columns: 5rem 1fr;
+  gap: 0.8rem; padding: 0.7rem 1.2rem;
+  border-bottom: 1px solid var(--line); align-items: baseline;
+}
+.frow:last-child { border-bottom: none; }
+.fl { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+.fv { font-size: 0.87rem; font-weight: 500; color: var(--ink); line-height: 1.45; }
+
+/* ── GALLERY ── */
+.gallery-outer { padding: 4rem 0; overflow: hidden; background: var(--cream); }
+.gallery-head { padding: 0 3rem; margin-bottom: 1.6rem; }
+
+.gallery-track {
+  display: flex; gap: 0.75rem;
+  padding: 0.4rem 3rem 1.2rem;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none; cursor: grab;
+}
+.gallery-track:active { cursor: grabbing; }
+.gallery-track::-webkit-scrollbar { display: none; }
+
+.gcard {
+  flex: 0 0 auto; width: 270px;
+  border-radius: 12px; overflow: hidden;
+  scroll-snap-align: start; position: relative;
+  box-shadow: 0 2px 10px rgba(28,24,16,0.08);
+  border: 1px solid var(--line);
+}
+.gcard img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform 0.32s ease; }
+.gcard:hover img { transform: scale(1.05); }
+.gcap {
+  position: absolute; bottom: 0.6rem; left: 0.6rem;
+  background: rgba(250,247,239,0.92); backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  padding: 0.22rem 0.58rem; border-radius: 100px;
+  font-size: 0.64rem; font-weight: 700; color: var(--ink);
+}
+
+/* ── CONTACT — echoes hero ── */
+.contact-sec {
+  background: var(--cream);
+  padding: 5.5rem 3rem;
+  position: relative; overflow: hidden;
+}
+
+/* Same soft green wash as hero */
+.contact-sec::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 65% 55% at 15% 15%, rgba(74,154,94,0.11) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 45% at 90% 90%, rgba(40,85,184,0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.contact-card {
+  max-width: 1100px; margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--line2);
+  border-radius: 22px;
+  padding: 3.5rem;
+  position: relative;
+  box-shadow: 0 4px 32px rgba(28,24,16,0.07);
+  overflow: hidden;
+}
+
+/* Matching ray in contact card */
+.contact-card::before {
+  content: '';
+  position: absolute; top: -60px; left: -60px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(40,85,184,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: start;
+  position: relative;
+}
+
+.contact-eye {
+  font-size: 0.67rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;
+}
+
+.contact-h {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 400; line-height: 1.1;
+  letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1rem;
+}
+
+.contact-sub {
+  font-size: 0.97rem; color: var(--muted);
+  line-height: 1.65; max-width: 40ch;
+}
+
+/* Contained rows inside the card */
+.crows { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.crow {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.9rem 1.1rem;
+  background: var(--cream);
+  border: 1px solid var(--line2);
+  border-radius: 10px;
+  text-decoration: none; color: var(--ink);
+  transition: all 0.18s;
+}
+.crow:hover { background: var(--cream-deep); transform: translateX(4px); border-color: var(--blue); }
+
+.crow-l { }
+.crow-lab { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.1rem; }
+.crow-val { font-size: 0.91rem; font-weight: 600; }
+.arr { color: var(--muted); font-size: 0.9rem; transition: all 0.18s; }
+.crow:hover .arr { color: var(--blue); transform: translateX(4px); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 1.4rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--cream);
+}
+.foot-n { font-family: 'Fraunces', serif; font-size: 0.9rem; font-weight: 500; color: var(--ink); }
+footer span { font-size: 0.75rem; color: var(--muted); }
+
+/* ── ANIMATIONS ── */
+@keyframes up { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+
+.reveal { opacity:0; transform:translateY(14px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.vis { opacity:1; transform:none; }
+
+.stagger > * { opacity:0; transform:translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.stagger.vis > *:nth-child(1) { opacity:1; transform:none; }
+.stagger.vis > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.09s; }
+.stagger.vis > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.18s; }
+.stagger.vis > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.27s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 800px) {
+  nav { top:0.5rem; left:0.5rem; right:0.5rem; padding:0.65rem 1.1rem; }
+  nav ul { gap: 1.1rem; }
+  .hero { padding: 7rem 1.5rem 3rem; }
+  .hero-name { font-size: 3.2rem; }
+  .sec { padding: 4rem 1.5rem; }
+  .sec-head-2col { grid-template-columns: 1fr; gap: 1rem; }
+  .work-grid { grid-template-columns: 1fr; }
+  .writing-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .press-aside { position: static; }
+  .ev-pair { grid-template-columns: 1fr; }
+  .now-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .contact-card { padding: 2rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .lbreak-text { left: 1.5rem; bottom: 1.5rem; }
+  .gallery-head, .gallery-track { padding-left: 1.5rem; padding-right: 1.5rem; }
+  footer { flex-direction: column; gap: 0.4rem; padding: 1.4rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-name">Varun Vassanth</a>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#now">Now</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="pulse"></span> London — open to what's next</div>
+    <div class="hero-name">Varun<br><span class="blue">Vassanth.</span></div>
+    <p class="hero-line">I build things when I think they should exist. Operator, co-founder, researcher, community builder. The projects change. The impulse doesn't.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn btn-blue">See the work →</a>
+      <a href="mailto:varunvassanth@outlook.com" class="btn btn-outline">Get in touch</a>
+    </div>
+    <div class="creds">
+      <span class="cred">London Review of Education</span>
+      <span class="cred">Sifted</span>
+      <span class="cred">180 Degrees EU Summit</span>
+      <span class="cred">JBM Podcast</span>
+      <span class="cred">UCL</span>
+    </div>
+  </div>
+</section>
+
+<!-- LANDSCAPE BREAK — Patch books / Festival of Ideas -->
+<div class="lbreak">
+  <img src="images/patch-books.jpeg" alt="Patch — Building a Shared Cultural Vision">
+  <div class="lbreak-overlay"></div>
+  <div class="lbreak-text">
+    <div class="lbreak-eye">Patch · Twickenham</div>
+    <div class="lbreak-q">Building a shared cultural vision — one site at a time.</div>
+  </div>
+</div>
+
+<!-- WORK -->
+<section class="sec work-sec" id="work">
+  <div class="sec-wrap">
+    <div class="sec-head-2col reveal">
+      <div>
+        <div class="sec-eye">Things I've built</div>
+        <h2>Four projects.<br>One consistent impulse.</h2>
+      </div>
+      <p class="sec-sub">Each one taught me something different about what it takes to make something real — and who you need around you to do it.</p>
+    </div>
+
+    <div class="work-grid stagger">
+
+      <!-- Patch — first -->
+      <div class="wcard patch">
+        <img src="images/patch-team.jpeg" alt="Patch team" class="wcard-media">
+        <div class="wcard-top">
+          <div class="wcard-title">Patch</div>
+          <img src="images/patch-logo.png" alt="Patch" class="wcard-logo">
+        </div>
+        <div class="wcard-role">Founding Team — GTM, Ops & Partnerships · 2021 — 2023</div>
+        <p class="wcard-desc">Early operator at a coworking startup. Drove <strong>&gt;$200k ARR</strong>, wrote the site launch playbook, project managed three openings scaling to <strong>30,000 sq ft</strong>. Led B Corp and company-wide impact strategy.</p>
+        <div class="chips">
+          <a href="https://medium.com/patchplaces/working-near-living-near-63d9dd51241e" target="_blank" class="chip">Essay ↗</a>
+          <a href="https://sifted.eu/articles/work-near-home" target="_blank" class="chip">Sifted ↗</a>
+        </div>
+      </div>
+
+      <!-- Opportutoring -->
+      <div class="wcard ot">
+        <div class="wcard-noimg">Opportutoring</div>
+        <div class="wcard-top">
+          <div class="wcard-title">Opportutoring</div>
+          <img src="images/opportutoring-logo.png" alt="Opportutoring" class="wcard-logo">
+        </div>
+        <div class="wcard-role">Co-Founder · 2018 — 2023</div>
+        <p class="wcard-desc">Saw a gap in access to tutoring for under-represented students. Built an organisation from scratch — UK launch, <strong>120+ members</strong> in year two, partnerships with Student Action for Refugees and SOAS.</p>
+        <div class="chips">
+          <span class="chip">Education</span>
+          <span class="chip">Community</span>
+          <span class="chip">Partnerships</span>
+        </div>
+      </div>
+
+      <!-- Inclusive Curriculum -->
+      <div class="wcard ic">
+        <img src="images/varun-presenting.jpeg" alt="Presenting" class="wcard-media">
+        <div class="wcard-top">
+          <div class="wcard-title">Inclusive Curriculum Project</div>
+        </div>
+        <div class="wcard-role">Co-Author & Team — UCL Political Science · 2019 — 2021</div>
+        <p class="wcard-desc">Co-authored a <strong>peer-reviewed paper</strong> in the London Review of Education on decolonising knowledge. Part of the team building UCL's inclusive curriculum under Prof. Avia Pasternak.</p>
+        <div class="chips">
+          <a href="https://uclpress.scienceopen.com/document?vid=d5455585-1ccd-48e2-8ad5-fd45150c50f4" target="_blank" class="chip">Read the paper ↗</a>
+          <a href="https://uclpoliticalsciencecurriculum.org/theteam" target="_blank" class="chip">Team ↗</a>
+        </div>
+      </div>
+
+      <!-- Safe Case -->
+      <div class="wcard sc">
+        <div class="wcard-noimg">Safe Case</div>
+        <div class="wcard-top">
+          <div class="wcard-title">Safe Case</div>
+        </div>
+        <div class="wcard-role">Founder — AI-native Legal Tech · 2024 — Present</div>
+        <p class="wcard-desc">Building an <strong>AI-native evidence management tool</strong> for legal teams using LLM prompting, Lovable and Cursor. Learning what makes AI genuinely useful rather than merely impressive.</p>
+        <div class="chips">
+          <span class="chip">AI</span>
+          <span class="chip">Legal Tech</span>
+          <span class="chip">In progress</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WRITING & PRESS -->
+<section class="sec writing-sec" id="writing">
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <div class="sec-eye">Writing & appearances</div>
+      <h2>What I've written.<br>Where I've turned up.</h2>
+    </div>
+    <div class="writing-layout">
+      <div class="wlist reveal">
+        <a href="https://uclpress.scienceopen.com/document?vid=d5455585-1ccd-48e2-8ad5-fd45150c50f4" target="_blank" class="wrow">
+          <span class="wr-date">2021</span>
+          <span class="wr-title">Decolonising Education: Towards an Inclusive Curriculum — London Review of Education</span>
+          <span class="wr-badge pub">Published</span>
+        </a>
+        <a href="https://medium.com/patchplaces/working-near-living-near-63d9dd51241e" target="_blank" class="wrow">
+          <span class="wr-date">May '21</span>
+          <span class="wr-title">Working near, living near — the importance of in-person community</span>
+          <span class="wr-badge pub">Essay</span>
+        </a>
+        <a href="https://www.patch.work/blog/varun-vassanth-on-why-i-joined-patch" target="_blank" class="wrow">
+          <span class="wr-date">2021</span>
+          <span class="wr-title">Why I joined Patch</span>
+          <span class="wr-badge pub">Blog</span>
+        </a>
+        <a href="https://www.ucl.ac.uk/social-historical-sciences/student-spotlight-varun-vassanth" target="_blank" class="wrow">
+          <span class="wr-date">2020</span>
+          <span class="wr-title">Student Spotlight — UCL Social & Historical Sciences</span>
+          <span class="wr-badge pub">Profile</span>
+        </a>
+        <div class="wrow ghost"><span class="wr-date">Soon</span><span class="wr-title">What I learned launching three sites in two years</span><span class="wr-badge draft">Drafting</span></div>
+        <div class="wrow ghost"><span class="wr-date">Soon</span><span class="wr-title">AI as an operational tool: what's actually changed</span><span class="wr-badge draft">Drafting</span></div>
+        <div class="wrow ghost"><span class="wr-date">Soon</span><span class="wr-title">Six months in Medellín: notes on a city building itself</span><span class="wr-badge draft">Drafting</span></div>
+      </div>
+
+      <aside class="press-aside reveal">
+        <div class="aside-head">Press & appearances</div>
+        <div class="press-list">
+          <a href="https://jbmc.co.uk/podcasts/from-line-manager-to-mentor-a-mentorship-deep-dive-with-freddie-fforde-varun-vassanth-from-patch/" target="_blank" class="prow">
+            <span class="prow-icon">🎙</span>
+            <div><div class="prow-title">From Line Manager to Mentor — with Freddie Fforde</div><div class="prow-source">JBM · 40 Minute Mentor · 2023</div></div>
+          </a>
+          <a href="https://sifted.eu/articles/work-near-home" target="_blank" class="prow">
+            <span class="prow-icon">📰</span>
+            <div><div class="prow-title">Move over London, we want to work closer to home</div><div class="prow-source">Sifted · Featured</div></div>
+          </a>
+          <a href="https://youtu.be/tXq5Sv8pD5g?si=r_qxuBmaA9LgE86Z" target="_blank" class="prow">
+            <span class="prow-icon">🎬</span>
+            <div><div class="prow-title">Inclusive Curriculum — with Prof. Avia Pasternak</div><div class="prow-source">UCL · YouTube</div></div>
+          </a>
+          <div class="prow dim">
+            <span class="prow-icon">🎤</span>
+            <div><div class="prow-title">Speaker · Social Impact</div><div class="prow-source">180 Degrees EU Summit</div></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- LANDSCAPE BREAK — Speaking -->
+<div class="lbreak">
+  <img src="images/varun-speaking-wide.jpeg" alt="Speaking — Culture of Compassion">
+  <div class="lbreak-overlay"></div>
+  <div class="lbreak-text">
+    <div class="lbreak-eye">Culture of Compassion · 2024</div>
+    <div class="lbreak-q">Across every project, the pattern is the same — I saw a gap, got curious, and brought people in to fill it.</div>
+  </div>
+</div>
+
+<!-- EVENTS -->
+<section class="sec events-sec" id="events">
+  <div class="sec-wrap">
+    <div class="sec-head-2col reveal">
+      <div>
+        <div class="sec-eye">Events</div>
+        <h2>Things I've made happen.</h2>
+      </div>
+      <p class="sec-sub">No mandate. No job title. Just the belief that something should exist — and the work to make it real.</p>
+    </div>
+
+    <div class="ev-pair stagger">
+
+      <div class="ev">
+        <img src="images/varun-speaking-close.jpeg" alt="Culture of Compassion" class="ev-img">
+        <div class="ev-body">
+          <div class="ev-kicker"><span class="culture-of">Culture of</span> · Fundraiser · August 2024</div>
+          <div class="ev-title">Culture of Compassion: a fundraiser for Palestine.</div>
+          <p class="ev-desc">Booked the venue, brought in a guest speaker, live music, art, catering by Niba Express. <strong>Raised £1,700 in one night</strong> for Medical Aid for Palestinians and Gaza Sunbirds. One of the most satisfying things I've done.</p>
+          <div class="ev-stat">
+            <span class="ev-stat-n">£1,700</span>
+            <span class="ev-stat-l">raised · one night · Hanbury Hall, E1</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ev">
+        <div class="ev-mosaic">
+          <img src="images/bbq-group.jpeg" alt="BBQ group photo" class="span">
+          <img src="images/bbq-lawn.jpeg" alt="Sports day">
+          <img src="images/bbq-food.jpeg" alt="BBQ food">
+        </div>
+        <div class="ev-body">
+          <div class="ev-kicker">The summer gathering · Recurring</div>
+          <div class="ev-title">Annual BBQ & Sports Day.</div>
+          <p class="ev-desc">Started as a small get-together. Grew into a proper summer institution — lawn games, relay races, a full sports day. <strong>60 people at the biggest one.</strong></p>
+          <div class="ev-stat">
+            <span class="ev-stat-n">60</span>
+            <span class="ev-stat-l">people · biggest edition</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NOW -->
+<section class="sec now-sec" id="now">
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <div class="sec-eye">Now</div>
+      <h2>What I'm up to.</h2>
+    </div>
+    <div class="now-layout">
+      <div class="now-prose reveal">
+        <p>I'm looking for my next full-time role — a <strong>Chief of Staff, Founder's Associate, Special Projects, or Launcher position</strong> at an ambitious early-stage company. I care more about the founders and the problem than the sector.</p>
+        <p>In parallel I'm building <strong>Safe Case</strong>, an AI-native legal tech tool, and thinking carefully about what AI is actually changing in how early-stage companies operate.</p>
+        <p>Based in London. PPE at <strong>UCL</strong> (First Class, Santander Award). Semester at <strong>El Colegio de México</strong>. Six months in Medellín. There is a Patch poster on my wall. It is not ironic.</p>
+      </div>
+      <div class="facts reveal">
+        <div class="facts-head">Quick facts</div>
+        <div class="frow"><div class="fl">Based</div><div class="fv">London, UK</div></div>
+        <div class="frow"><div class="fl">Open to</div><div class="fv">CoS · Founder's Associate · Special Projects · Launcher</div></div>
+        <div class="frow"><div class="fl">Sectors</div><div class="fv">AI · Fintech · Climate · Cities · Healthtech</div></div>
+        <div class="frow"><div class="fl">Building</div><div class="fv">Safe Case — AI legal tech</div></div>
+        <div class="frow"><div class="fl">Education</div><div class="fv">UCL PPE, First Class · El Colegio de México</div></div>
+        <div class="frow"><div class="fl">Travel</div><div class="fv">9 months LatAm · Open to Africa, SE Asia</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-outer">
+  <div class="gallery-head reveal">
+    <div class="sec-eye">Scenes</div>
+    <h2>A growing collection.</h2>
+  </div>
+  <div class="gallery-track">
+    <div class="gcard"><img src="images/patch-books.jpeg" alt="Patch library"><div class="gcap">Patch · First site</div></div>
+    <div class="gcard"><img src="images/patch-team.jpeg" alt="Patch team"><div class="gcap">The Patch team</div></div>
+    <div class="gcard"><img src="images/varun-presenting.jpeg" alt="Presenting"><div class="gcap">Presenting · Twickenham</div></div>
+    <div class="gcard"><img src="images/varun-speaking-wide.jpeg" alt="CoC"><div class="gcap">Culture of Compassion</div></div>
+    <div class="gcard"><img src="images/varun-speaking-close.jpeg" alt="At the mic"><div class="gcap">CoC · Hanbury Hall</div></div>
+    <div class="gcard"><img src="images/culture-audience.jpeg" alt="Audience"><div class="gcap">CoC · The audience</div></div>
+    <div class="gcard"><img src="images/culture-food.jpeg" alt="Food spread"><div class="gcap">CoC · The spread</div></div>
+    <div class="gcard"><img src="images/bbq-group.jpeg" alt="BBQ group"><div class="gcap">Annual BBQ · Sports day</div></div>
+    <div class="gcard"><img src="images/bbq-game.jpeg" alt="Garden games"><div class="gcap">BBQ · Garden games</div></div>
+    <div class="gcard"><img src="images/bbq-food.jpeg" alt="BBQ food"><div class="gcap">BBQ · The spread</div></div>
+    <div class="gcard"><img src="images/opportutoring-dinner.jpeg" alt="Opportutoring"><div class="gcap">Opportutoring · Dinner</div></div>
+    <div class="gcard"><img src="images/opportutoring-night.jpeg" alt="Opportutoring night"><div class="gcap">Opportutoring · Late night</div></div>
+    <div class="gcard"><img src="images/sifted.jpeg" alt="Sifted"><div class="gcap">Sifted · Patch feature</div></div>
+  </div>
+</section>
+
+<!-- CONTACT — echoes hero -->
+<section class="contact-sec" id="contact">
+  <div class="contact-card reveal">
+    <div class="contact-grid">
+      <div>
+        <div class="contact-eye">Get in touch</div>
+        <div class="contact-h">Let's talk about<br>what you're building.</div>
+        <p class="contact-sub">If you're working on something interesting at an early-stage company, I'd love to hear from you. Also happy to chat ops, AI tooling, or Latin America.</p>
+      </div>
+      <div class="crows">
+        <a href="mailto:varunvassanth@outlook.com" class="crow">
+          <div class="crow-l"><div class="crow-lab">Email</div><div class="crow-val">varunvassanth@outlook.com</div></div>
+          <span class="arr">→</span>
+        </a>
+        <a href="https://linkedin.com/in/varunvassanth" target="_blank" class="crow">
+          <div class="crow-l"><div class="crow-lab">LinkedIn</div><div class="crow-val">linkedin.com/in/varunvassanth</div></div>
+          <span class="arr">→</span>
+        </a>
+        <a href="tel:+447837404664" class="crow">
+          <div class="crow-l"><div class="crow-lab">Phone</div><div class="crow-val">+44 7837 404664</div></div>
+          <span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="foot-n">Varun Vassanth</span>
+  <span>London · 2025</span>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
+document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+
+const t = document.querySelector('.gallery-track');
+let d=false, x, s;
+t.addEventListener('mousedown', e => { d=true; x=e.pageX-t.offsetLeft; s=t.scrollLeft; });
+['mouseleave','mouseup'].forEach(ev => t.addEventListener(ev, ()=>d=false));
+t.addEventListener('mousemove', e => { if(!d) return; e.preventDefault(); t.scrollLeft=s-(e.pageX-t.offsetLeft-x)*1.4; });
+</script>
+</body>
+</html>
