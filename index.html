@@ -241,9 +241,11 @@ nav a:hover { color: var(--blue); }
 
 .lbreak-text {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  bottom: 3.2rem;
+  left: 3rem;
+  color: #fff;
+  max-width: 52ch;
+}
 
   padding: 1.6rem 2.4rem 1.8rem;
   color: #fff;
@@ -268,13 +270,13 @@ nav a:hover { color: var(--blue); }
 
 .lbreak-q {
   font-family: 'Fraunces', serif;
-  font-size: clamp(1.15rem, 2vw, 1.65rem);
+  font-size: clamp(1.5rem, 3.2vw, 2.4rem);
   font-weight: 400;
   line-height: 1.18;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   text-shadow: 0 2px 12px rgba(0,0,0,0.22);
-  max-width: 42ch;
 }
+  
 .lbreak-patch img {
   object-position: center 38%;
   filter: brightness(1.02) contrast(1.08) saturate(1.16);
@@ -312,7 +314,6 @@ nav a:hover { color: var(--blue); }
   font-size: clamp(1.2rem, 2vw, 1.7rem);
   line-height: 1.12;
   max-width: none;
-  text-wrap: balance;
 }
   
 /* ── SECTION SCAFFOLDING ── */
@@ -775,7 +776,7 @@ footer span { font-size: 0.75rem; color: var(--muted); }
     <div class="lbreak-q">Designing the conditions for people to come together<br>and build something shared.</div>
   </div>
 </div>
-
+  
 <!-- WORK -->
 <section class="sec work-sec" id="work">
   <div class="sec-wrap">
